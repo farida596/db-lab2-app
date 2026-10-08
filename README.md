@@ -308,7 +308,7 @@ This screenshot shows the login page.
 
 This screenshot shows the to-do list with one task marked as completed.
 
-![Completed To-Do](screenshots/one%20marked%20as%20done.png)
+![one mark as done](screenshots/one%20marked%20as%20done.png)
 
 ---
 
