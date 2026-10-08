@@ -1,37 +1,25 @@
 # Secure Flask Login & To-Do Application (Lab 2)
 
-A robust full-stack web application built with **Python (Flask)** and **MySQL** featuring secure user authentication, password hashing, session management, and personalized task management (CRUD).
+Full-stack web application built for **Introduction to Database Systems (Fall 2026)** at Alexandria National University, Faculty of Engineering.
 
 ---
 
-## 🚀 Tech Stack
-* **Backend**: Python, Flask, PyMySQL
-* **Security**: `bcrypt` (password hashing), Parameterized Queries (SQL injection prevention)
-* **Database**: MySQL
-* **Frontend**: HTML5, CSS3, Jinja2 Templates
+## 1. Team Members, IDs, and Contributions
+* **Farida Mohamed** (ID: *[2304245]*) — Designed the database schema and constraints, implemented secure user authentication with password hashing, built all server-side routing and CRUD operations, and handled GitHub deployment.
 
 ---
 
-## ✨ Key Features
-* **User Authentication**: Secure registration and login system with encrypted password hashing.
-* **Session Management**: Private user sessions ensuring users can only access and modify their own tasks.
-* **To-Do CRUD Operations**: Add new tasks, update descriptions, check off completed items, and delete tasks.
-* **Security Best Practices**: Guarded against SQL injection using parameterized inputs.
+## 2. Technology Used
+* **Back End**: Python, Flask framework, PyMySQL driver
+* **Front End**: HTML5, CSS3, Jinja2 Templates (fully responsive layout using CSS media queries)
+* **Database**: MySQL (`registration` database containing `users` and `todos` tables)
 
 ---
 
-## 📁 Project Structure
-```text
-db-lab2-app/
-├── app.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
-├── database/
-│   └── schema.sql
-├── static/
-│   └── style.css
-└── templates/
-    ├── login.html
-    ├── register.html
-    └── todos.html
+## 3. How to Run It from an Empty Machine
+A TA will follow these exact steps to test the application:
+
+1. **Clone the repository and navigate into it**
+   ```bash
+   git clone [https://github.com/farida596/db-lab2-app.git](https://github.com/farida596/db-lab2-app.git)
+   cd db-lab2-app
