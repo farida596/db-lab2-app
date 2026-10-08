@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h2>To-Do</h2>
-            <div class="user-info">
-                <span>Hi, {{ name }}</span>
-                <a href="{{ url_for('logout') }}" class="btn-logout">Log out</a>
-            </div>
-        </header>
-
-        {% with messages = get_flashed_messages(category_filter=["todo_error"]) %}
-            {% if messages %}
-                <ul class="error-list">
-                    {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-
-        <form action="{{ url_for('add_todo') }}" method="POST" class="add-form">
-            <input type="text" name="title" placeholder="What needs to be done?" required maxlength="200">
-            <button type="submit">Add</button>
+{% extends "layout.html" %}
+{% block title %}My To-Do List{% endblock %}
+{% block body %}
+    <div style="max-width: 600px; margin: 2rem auto; padding: 2rem; border: 1px solid #ccc; border-radius: 8px; background-color: var(--card-bg, #ffffff);">
+        <h2>My To-Do List</h2>
+        
+        <!-- Form to Add a New Task -->
+        <form method="POST" action="{{ url_for('add_todo') }}" style="display: flex; gap: 10px; margin-bottom: 2rem;">
+            <input type="text" name="title" placeholder="Add a new task..." required style="flex: 1; padding: 8px; box-sizing: border-box;">
+            <button type="submit" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Add Task</button>
         </form>
 
-        <div class="todo-list">
-            {% if not todos %}
-                <p class="empty-state">Your to-do list is empty. Add a task above!</p>
+        <!-- Task List -->
+        <ul style="list-style-type: none; padding: 0;">
+            {% if todos %}
+                {% for todo in todos %}
+                    <li style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+                        <span style="text-decoration: {% if todo.is_done %}line-through{% else %}none{% endif %};">
+                            {{ todo.title }}
+                        </span>
+                        <div style="display: flex; gap: 8px;">
+                            <!-- Mark Done / Not Done Form -->
+                            <form action="{{ url_for('update_todo', todo_id=todo.todo_id) }}" method="POST" style="margin: 0;">
+                                <button type="submit" style="padding: 4px 8px; cursor: pointer;">
+                                    {% if todo.is_done %}Mark Undone{% else %}Mark Done{% endif %}
+                                </button>
+                            </form>
+                            <!-- Delete Form -->
+                            <form action="{{ url_for('delete_todo', todo_id=todo.todo_id) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                                <button type="submit" style="padding: 4px 8px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #777;">No tasks found. Add one above!</p>
             {% endif %}
-            {% for todo in todos %}
-            <form action="{{ url_for('update_todo', todo_id=todo.todo_id) }}" method="POST" class="todo-item">
-                <input type="checkbox" name="is_done" {% if todo.is_done %}checked{% endif %} onchange="this.form.submit()">
-                <input type="text" name="title" value="{{ todo.title }}" maxlength="200" required>
-                <button type="submit" class="btn-save">Save</button>
-                <button type="submit" formaction="{{ url_for('delete_todo', todo_id=todo.todo_id) }}" formmethod="POST" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</button>
-            </form>
-            {% endfor %}
-        </div>
+        </ul>
     </div>
-</body>
-</html>
+{% endblock %}

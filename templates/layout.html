@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}To-Do App{% endblock %}</title>
+    <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar / Header -->
+    <header style="padding: 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc;">
+        <div>
+            <h2><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">To-Do App</a></h2>
+        </div>
+        <div>
+            <!-- Bonus Feature: Theme Toggle Button -->
+            <button id="theme-toggle" style="padding: 6px 12px; cursor: pointer; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc;">Toggle Dark Mode</button>
+            
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('logout') }}" style="text-decoration: none; color: #d9534f; font-weight: bold;">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" style="text-decoration: none; margin-right: 10px;">Login</a>
+                <a href="{{ url_for('register') }}" style="text-decoration: none;">Register</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Flash Messages -->
+    <div class="container" style="padding: 1rem;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" style="padding: 10px; margin-bottom: 10px; background-color: #f2dede; color: #a94442; border: 1px solid #ebccd1; border-radius: 4px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main Page Content Block -->
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Include the JavaScript file for validation and theme toggling -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

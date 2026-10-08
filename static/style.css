@@ -15,3 +15,21 @@ button:hover { background: #0056b3; }
     body { padding: 5px; }
     .todo-item { flex-direction: column; align-items: stretch; }
 }
+/* Define Light & Dark Theme CSS Variables */
+:root {
+    --bg-color: #f9f9f9;
+    --text-color: #333333;
+    --card-bg: #ffffff;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f1f1f1;
+    --card-bg: #2d2d2d;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
