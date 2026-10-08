@@ -1,3 +1,7 @@
+# Secure Flask Login & To-Do Application (Lab 2)
+
+Full-stack web application built for **Introduction to Database Systems (Fall 2026)** at Alexandria National University, Faculty of Engineering.
+
 ---
 
 ## 1. Team Members, IDs, and Contributions
