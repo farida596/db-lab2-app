@@ -498,7 +498,7 @@ This prevents database credentials and other sensitive configuration from being 
 
 # 13. Bonus Features
 
-No bonus feature is claimed for this submission.
+Successfully integrated a persistent Dark/Light Mode using client-side JavaScript.
 
 ---
 
