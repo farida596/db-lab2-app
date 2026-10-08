@@ -1,0 +1,17 @@
+body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
+.card, .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 600px; box-sizing: border-box; }
+header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 10px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+button:hover { background: #0056b3; }
+.error-list { color: red; font-size: 14px; margin-bottom: 15px; padding-left: 20px; }
+.todo-item { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+.todo-item input[type="text"] { margin: 0; flex-grow: 1; }
+.btn-save { background: #28a745; }
+.btn-delete { background: #dc3545; }
+.btn-logout { background: #6c757d; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; }
+.empty-state { color: #666; text-align: center; padding: 20px; }
+@media (max-width: 360px) {
+    body { padding: 5px; }
+    .todo-item { flex-direction: column; align-items: stretch; }
+}
